@@ -1,14 +1,14 @@
-import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { defineComponent, inject, getCurrentInstance, h, Suspense, hasInjectionContext, ref, markRaw, computed, watchEffect, watch, provide, toRef, reactive, isRef, createTextVNode, resolveComponent, createElementBlock, Fragment, createApp, shallowReactive, onErrorCaptured, onServerPrefetch, unref, createVNode, resolveDynamicComponent, effectScope, shallowRef, isReadonly, isShallow, isReactive, toRaw, defineAsyncComponent, mergeProps, getCurrentScope, useSSRContext, nextTick, triggerRef } from 'vue';
+import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { hasInjectionContext, getCurrentInstance, defineComponent, createElementBlock, ref, inject, h, Suspense, Fragment, createApp, provide, shallowReactive, toRef, onErrorCaptured, onServerPrefetch, unref, createVNode, resolveDynamicComponent, reactive, effectScope, shallowRef, isReadonly, isRef, isShallow, isReactive, toRaw, defineAsyncComponent, mergeProps, getCurrentScope, useSSRContext, nextTick, computed, markRaw, triggerRef, watch } from 'vue';
 import { k as hasProtocol, l as isScriptProtocol, m as joinURL, w as withQuery, n as sanitizeStatusCode, o as getContext, $ as $fetch, p as createHooks, q as executeAsync, h as createError$1, r as toRouteMatcher, v as createRouter$1, x as defu } from '../_/nitro.mjs';
 import { b as baseURL } from '../routes/renderer.mjs';
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
-import { error, createNode, createMessage, createConfig, warn, getNode, watchRegistry, isNode, sugar, isDOM, isComponent, isConditional, compile, resetCount as resetCount$1, createClasses, generateClassList } from '@formkit/core';
-import { cloneAny, extend, undefine, camel, kebab, nodeProps, only, except, oncePerTick, slugify, shallowClone, eq, token, isObject, has, isPojo, empty } from '@formkit/utils';
+import { resetCount as resetCount$1, createClasses, generateClassList, createMessage } from '@formkit/core';
+import { extend, empty, has, eq, cloneAny, shallowClone, undefine, camel } from '@formkit/utils';
 import { createObserver } from '@formkit/observer';
 import * as defaultRules from '@formkit/rules';
 import { createValidationPlugin } from '@formkit/validation';
 import { createI18nPlugin, en } from '@formkit/i18n';
-import { runtimeProps, createSection, resetCounts, createLibraryPlugin, inputs } from '@formkit/inputs';
+import { createSection, resetCounts, createLibraryPlugin, inputs } from '@formkit/inputs';
 import { createThemePlugin } from '@formkit/themes';
 import { register } from '@formkit/dev';
 import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs } from 'vue/server-renderer';
@@ -149,7 +149,7 @@ async function applyPlugins(nuxtApp, plugins2) {
   const resolvedPlugins = /* @__PURE__ */ new Set();
   const unresolvedPlugins = [];
   const parallels = [];
-  let error2 = void 0;
+  let error = void 0;
   let promiseDepth = 0;
   async function executePlugin(plugin2) {
     const unresolvedPluginsForThisPlugin = plugin2.dependsOn?.filter((name) => plugins2.some((p) => p._name === name) && !resolvedPlugins.has(name)) ?? [];
@@ -173,7 +173,7 @@ async function applyPlugins(nuxtApp, plugins2) {
         if (!plugin2.parallel && !nuxtApp.payload.error) {
           throw e;
         }
-        error2 ||= e;
+        error ||= e;
       });
       if (plugin2.parallel) {
         parallels.push(promise);
@@ -200,8 +200,8 @@ async function applyPlugins(nuxtApp, plugins2) {
       await Promise.all(parallels);
     }
   }
-  if (error2) {
-    throw nuxtApp.payload.error || error2;
+  if (error) {
+    throw nuxtApp.payload.error || error;
   }
 }
 // @__NO_SIDE_EFFECTS__
@@ -347,20 +347,20 @@ function encodeURL(location2, isExternalHost = false) {
 }
 const NUXT_ERROR_SIGNATURE = "__nuxt_error";
 const useError = /* @__NO_SIDE_EFFECTS__ */ () => toRef(useNuxtApp().payload, "error");
-const showError = (error2) => {
-  const nuxtError = createError(error2);
+const showError = (error) => {
+  const nuxtError = createError(error);
   try {
-    const error22 = /* @__PURE__ */ useError();
+    const error2 = /* @__PURE__ */ useError();
     if (false) ;
-    error22.value ||= nuxtError;
+    error2.value ||= nuxtError;
   } catch {
     throw nuxtError;
   }
   return nuxtError;
 };
-const isNuxtError = (error2) => !!error2 && typeof error2 === "object" && NUXT_ERROR_SIGNATURE in error2;
-const createError = (error2) => {
-  const nuxtError = createError$1(error2);
+const isNuxtError = (error) => !!error && typeof error === "object" && NUXT_ERROR_SIGNATURE in error;
+const createError = (error) => {
+  const nuxtError = createError$1(error);
   Object.defineProperty(nuxtError, NUXT_ERROR_SIGNATURE, {
     value: true,
     configurable: false,
@@ -391,19 +391,24 @@ async function getRouteRules(arg) {
 }
 const _routes = [
   {
+    name: "otp",
+    path: "/otp",
+    component: () => import('./otp-C4xuUWhI.mjs')
+  },
+  {
     name: "home",
     path: "/home",
-    component: () => import('./home-B1REBugx.mjs')
+    component: () => import('./home-B3r3sgWW.mjs')
   },
   {
     name: "about",
     path: "/about",
-    component: () => import('./about-CFE1zbIK.mjs')
+    component: () => import('./about-eMiwFW41.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-C2dLBjuH.mjs')
+    component: () => import('./index-B1mez4LE.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -501,7 +506,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to, from) => {
   if (result === true) {
     return;
   }
-  const error2 = createError({
+  const error = createError({
     fatal: false,
     statusCode: result && result.statusCode || 404,
     statusMessage: result && result.statusMessage || `Page Not Found: ${to.fullPath}`,
@@ -509,7 +514,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to, from) => {
       path: to.fullPath
     }
   });
-  return error2;
+  return error;
 });
 const manifest_45route_45rule = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
   {
@@ -1159,775 +1164,6 @@ function ssrComplete(app) {
   callbacks.clear();
   ssrCompleteRegistry.delete(app);
 }
-function onSSRComplete(app, callback) {
-  if (!app)
-    return;
-  if (!ssrCompleteRegistry.has(app))
-    ssrCompleteRegistry.set(app, /* @__PURE__ */ new Set());
-  ssrCompleteRegistry.get(app)?.add(callback);
-}
-var memo = {};
-var memoKeys = {};
-var instanceKey;
-var instanceScopes = /* @__PURE__ */ new WeakMap();
-var raw = "__raw__";
-var isClassProp = /[a-zA-Z0-9\-][cC]lass$/;
-function getRef(token3, data) {
-  const value = ref(null);
-  if (token3 === "get") {
-    const nodeRefs = {};
-    value.value = get.bind(null, nodeRefs);
-    return value;
-  }
-  const path = token3.split(".");
-  watchEffect(() => {
-    value.value = getValue(
-      isRef(data) ? data.value : data,
-      path
-    );
-  });
-  return value;
-}
-function getValue(set, path) {
-  if (Array.isArray(set)) {
-    for (const subset of set) {
-      const value = subset !== false && getValue(subset, path);
-      if (value !== void 0)
-        return value;
-    }
-    return void 0;
-  }
-  let foundValue = void 0;
-  let obj = set;
-  for (const i in path) {
-    const key = path[i];
-    if (typeof obj !== "object" || obj === null) {
-      foundValue = void 0;
-      break;
-    }
-    const currentValue = obj[key];
-    if (Number(i) === path.length - 1 && currentValue !== void 0) {
-      foundValue = typeof currentValue === "function" ? currentValue.bind(obj) : currentValue;
-      break;
-    }
-    obj = currentValue;
-  }
-  return foundValue;
-}
-function get(nodeRefs, id) {
-  if (typeof id !== "string")
-    return warn(650);
-  if (!(id in nodeRefs))
-    nodeRefs[id] = ref(void 0);
-  if (nodeRefs[id].value === void 0) {
-    nodeRefs[id].value = null;
-    const root = getNode(id);
-    if (root)
-      nodeRefs[id].value = root.context;
-    watchRegistry(id, ({ payload: node }) => {
-      nodeRefs[id].value = isNode(node) ? node.context : node;
-    });
-  }
-  return nodeRefs[id].value;
-}
-function parseSchema(library, schema, memoKey) {
-  function parseCondition(library2, node) {
-    const condition = provider(compile(node.if), { if: true });
-    const children = createElements(library2, node.then);
-    const alternate = node.else ? createElements(library2, node.else) : null;
-    return [condition, children, alternate];
-  }
-  function parseConditionAttr(attr, _default) {
-    const condition = provider(compile(attr.if));
-    let b = () => _default;
-    let a = () => _default;
-    if (typeof attr.then === "object") {
-      a = parseAttrs(attr.then, void 0);
-    } else if (typeof attr.then === "string" && attr.then?.startsWith("$")) {
-      a = provider(compile(attr.then));
-    } else {
-      a = () => attr.then;
-    }
-    if (has(attr, "else")) {
-      if (typeof attr.else === "object") {
-        b = parseAttrs(attr.else);
-      } else if (typeof attr.else === "string" && attr.else?.startsWith("$")) {
-        b = provider(compile(attr.else));
-      } else {
-        b = () => attr.else;
-      }
-    }
-    return () => condition() ? a() : b();
-  }
-  function parseAttrs(unparsedAttrs, bindExp, _default = {}) {
-    const explicitAttrs = new Set(Object.keys(unparsedAttrs || {}));
-    const boundAttrs = bindExp ? provider(compile(bindExp)) : () => ({});
-    const setters = [
-      (attrs) => {
-        const bound = boundAttrs();
-        for (const attr in bound) {
-          if (!explicitAttrs.has(attr)) {
-            attrs[attr] = bound[attr];
-          }
-        }
-      }
-    ];
-    if (unparsedAttrs) {
-      if (isConditional(unparsedAttrs)) {
-        const condition = parseConditionAttr(
-          unparsedAttrs,
-          _default
-        );
-        return condition;
-      }
-      for (let attr in unparsedAttrs) {
-        const value = unparsedAttrs[attr];
-        let getValue2;
-        const isStr = typeof value === "string";
-        if (attr.startsWith(raw)) {
-          attr = attr.substring(7);
-          getValue2 = () => value;
-        } else if (isStr && value.startsWith("$") && value.length > 1 && !(value.startsWith("$reset") && isClassProp.test(attr))) {
-          getValue2 = provider(compile(value));
-        } else if (typeof value === "object" && isConditional(value)) {
-          getValue2 = parseConditionAttr(value, void 0);
-        } else if (typeof value === "object" && isPojo(value)) {
-          getValue2 = parseAttrs(value);
-        } else {
-          getValue2 = () => value;
-        }
-        setters.push((attrs) => {
-          attrs[attr] = getValue2();
-        });
-      }
-    }
-    return () => {
-      const attrs = Array.isArray(unparsedAttrs) ? [] : {};
-      setters.forEach((setter) => setter(attrs));
-      return attrs;
-    };
-  }
-  function parseNode(library2, _node) {
-    let element = null;
-    let attrs = () => null;
-    let condition = false;
-    let children = null;
-    let alternate = null;
-    let iterator = null;
-    let resolve = false;
-    const node = sugar(_node);
-    if (isDOM(node)) {
-      element = node.$el;
-      attrs = node.$el !== "text" ? parseAttrs(node.attrs, node.bind) : () => null;
-    } else if (isComponent(node)) {
-      if (typeof node.$cmp === "string") {
-        if (has(library2, node.$cmp)) {
-          element = library2[node.$cmp];
-        } else {
-          element = node.$cmp;
-          resolve = true;
-        }
-      } else {
-        element = node.$cmp;
-      }
-      attrs = parseAttrs(node.props, node.bind);
-    } else if (isConditional(node)) {
-      [condition, children, alternate] = parseCondition(library2, node);
-    }
-    if (!isConditional(node) && "if" in node) {
-      condition = provider(compile(node.if));
-    } else if (!isConditional(node) && element === null) {
-      condition = () => true;
-    }
-    if ("children" in node && node.children) {
-      if (typeof node.children === "string") {
-        if (node.children.startsWith("$slots.")) {
-          element = element === "text" ? "slot" : element;
-          children = provider(compile(node.children));
-        } else if (node.children.startsWith("$") && node.children.length > 1) {
-          const value = provider(compile(node.children));
-          children = () => String(value());
-        } else {
-          children = () => String(node.children);
-        }
-      } else if (Array.isArray(node.children)) {
-        children = createElements(library2, node.children);
-      } else {
-        const [childCondition, c, a] = parseCondition(library2, node.children);
-        children = (iterationData) => childCondition && childCondition() ? c && c(iterationData) : a && a(iterationData);
-      }
-    }
-    if (isComponent(node)) {
-      if (children) {
-        const produceChildren = children;
-        children = (iterationData) => {
-          return {
-            default(slotData2, key) {
-              const currentKey = instanceKey;
-              if (key)
-                instanceKey = key;
-              if (slotData2)
-                instanceScopes.get(instanceKey)?.unshift(slotData2);
-              if (iterationData)
-                instanceScopes.get(instanceKey)?.unshift(iterationData);
-              const c = produceChildren(iterationData);
-              if (slotData2)
-                instanceScopes.get(instanceKey)?.shift();
-              if (iterationData)
-                instanceScopes.get(instanceKey)?.shift();
-              instanceKey = currentKey;
-              return c;
-            }
-          };
-        };
-        children.slot = true;
-      } else {
-        children = () => ({});
-      }
-    }
-    if ("for" in node && node.for) {
-      const values = node.for.length === 3 ? node.for[2] : node.for[1];
-      const getValues = typeof values === "string" && values.startsWith("$") ? provider(compile(values)) : () => values;
-      iterator = [
-        getValues,
-        node.for[0],
-        node.for.length === 3 ? String(node.for[1]) : null
-      ];
-    }
-    return [condition, element, attrs, children, alternate, iterator, resolve];
-  }
-  function createSlots(children, iterationData) {
-    const slots = children(iterationData);
-    const currentKey = instanceKey;
-    return Object.keys(slots).reduce((allSlots, slotName) => {
-      const slotFn = slots && slots[slotName];
-      allSlots[slotName] = (data) => {
-        return slotFn && slotFn(data, currentKey) || null;
-      };
-      return allSlots;
-    }, {});
-  }
-  function createElement(library2, node) {
-    const [condition, element, attrs, children, alternate, iterator, resolve] = parseNode(library2, node);
-    let createNodes = (iterationData) => {
-      if (condition && element === null && children) {
-        return condition() ? children(iterationData) : alternate && alternate(iterationData);
-      }
-      if (element && (!condition || condition())) {
-        if (element === "text" && children) {
-          return createTextVNode(String(children()));
-        }
-        if (element === "slot" && children)
-          return children(iterationData);
-        const el = resolve ? resolveComponent(element) : element;
-        const slots = children?.slot ? createSlots(children, iterationData) : null;
-        return h(
-          el,
-          attrs(),
-          slots || (children ? children(iterationData) : [])
-        );
-      }
-      return typeof alternate === "function" ? alternate(iterationData) : alternate;
-    };
-    if (iterator) {
-      const repeatedNode = createNodes;
-      const [getValues, valueName, keyName] = iterator;
-      createNodes = () => {
-        const _v = getValues();
-        const values = Number.isFinite(_v) ? Array(Number(_v)).fill(0).map((_, i) => i) : _v;
-        const fragment = [];
-        if (typeof values !== "object")
-          return null;
-        const instanceScope = instanceScopes.get(instanceKey) || [];
-        const isArray = Array.isArray(values);
-        for (const key in values) {
-          if (isArray && key in Array.prototype)
-            continue;
-          const iterationData = Object.defineProperty(
-            {
-              ...instanceScope.reduce(
-                (previousIterationData, scopedData) => {
-                  if (previousIterationData.__idata) {
-                    return { ...previousIterationData, ...scopedData };
-                  }
-                  return scopedData;
-                },
-                {}
-              ),
-              [valueName]: values[key],
-              ...keyName !== null ? { [keyName]: isArray ? Number(key) : key } : {}
-            },
-            "__idata",
-            { enumerable: false, value: true }
-          );
-          instanceScope.unshift(iterationData);
-          fragment.push(repeatedNode.bind(null, iterationData)());
-          instanceScope.shift();
-        }
-        return fragment;
-      };
-    }
-    return createNodes;
-  }
-  function createElements(library2, schema2) {
-    if (Array.isArray(schema2)) {
-      const els = schema2.map(createElement.bind(null, library2));
-      return (iterationData) => els.map((element2) => element2(iterationData));
-    }
-    const element = createElement(library2, schema2);
-    return (iterationData) => element(iterationData);
-  }
-  const providers = [];
-  function provider(compiled, hints = {}) {
-    const compiledFns = /* @__PURE__ */ new WeakMap();
-    providers.push((callback, key) => {
-      compiledFns.set(
-        key,
-        compiled.provide((tokens) => callback(tokens, hints))
-      );
-    });
-    return () => compiledFns.get(instanceKey)();
-  }
-  function createInstance(providerCallback, key) {
-    memoKey ?? (memoKey = toMemoKey(schema));
-    const [render, compiledProviders] = has(memo, memoKey) ? memo[memoKey] : [createElements(library, schema), providers];
-    compiledProviders.forEach((compiledProvider) => {
-      compiledProvider(providerCallback, key);
-    });
-    return () => {
-      instanceKey = key;
-      return render();
-    };
-  }
-  return createInstance;
-}
-function useScope(token3, defaultValue) {
-  const scopedData = instanceScopes.get(instanceKey) || [];
-  let scopedValue = void 0;
-  if (scopedData.length) {
-    scopedValue = getValue(scopedData, token3.split("."));
-  }
-  return scopedValue === void 0 ? defaultValue : scopedValue;
-}
-function slotData(data, key) {
-  return new Proxy(data, {
-    get(...args) {
-      let data2 = void 0;
-      const property = args[1];
-      if (typeof property === "string") {
-        const prevKey = instanceKey;
-        instanceKey = key;
-        data2 = useScope(property, void 0);
-        instanceKey = prevKey;
-      }
-      return data2 !== void 0 ? data2 : Reflect.get(...args);
-    }
-  });
-}
-function createRenderFn(instanceCreator, data, instanceKey2) {
-  return instanceCreator(
-    (requirements, hints = {}) => {
-      return requirements.reduce((tokens, token3) => {
-        if (token3.startsWith("slots.")) {
-          const slot = token3.substring(6);
-          const hasSlot = () => data.slots && has(data.slots, slot) && typeof data.slots[slot] === "function";
-          if (hints.if) {
-            tokens[token3] = hasSlot;
-          } else if (data.slots) {
-            const scopedData = slotData(data, instanceKey2);
-            tokens[token3] = () => hasSlot() ? data.slots[slot](scopedData) : null;
-          }
-        } else {
-          const value = getRef(token3, data);
-          tokens[token3] = () => useScope(token3, value.value);
-        }
-        return tokens;
-      }, {});
-    },
-    instanceKey2
-  );
-}
-function clean(schema, memoKey, instanceKey2) {
-  memoKey ?? (memoKey = toMemoKey(schema));
-  memoKeys[memoKey]--;
-  if (memoKeys[memoKey] === 0) {
-    delete memoKeys[memoKey];
-    const [, providers] = memo[memoKey];
-    delete memo[memoKey];
-    providers.length = 0;
-  }
-  instanceScopes.delete(instanceKey2);
-}
-function toMemoKey(schema) {
-  return JSON.stringify(schema, (_, value) => {
-    if (typeof value === "function") {
-      return value.toString();
-    }
-    return value;
-  });
-}
-var FormKitSchema = /* @__PURE__ */ defineComponent({
-  name: "FormKitSchema",
-  props: {
-    schema: {
-      type: [Array, Object],
-      required: true
-    },
-    data: {
-      type: Object,
-      default: () => ({})
-    },
-    library: {
-      type: Object,
-      default: () => ({})
-    },
-    memoKey: {
-      type: String,
-      required: false
-    }
-  },
-  emits: ["mounted"],
-  setup(props, context) {
-    getCurrentInstance();
-    let instanceKey2 = {};
-    instanceScopes.set(instanceKey2, []);
-    const library = { FormKit: markRaw(FormKit_default), ...props.library };
-    let provider = parseSchema(library, props.schema, props.memoKey);
-    let render;
-    let data;
-    watchEffect(() => {
-      data = Object.assign(reactive(props.data ?? {}), {
-        slots: context.slots
-      });
-      context.slots;
-      render = createRenderFn(provider, data, instanceKey2);
-    });
-    function cleanUp() {
-      clean(props.schema, props.memoKey, instanceKey2);
-      if (data) {
-        if (data.node)
-          data.node.destroy();
-        data.slots = null;
-        data = null;
-      }
-      render = null;
-    }
-    onSSRComplete(getCurrentInstance()?.appContext.app, cleanUp);
-    return () => render ? render() : null;
-  }
-});
-var parentSymbol = Symbol("FormKitParent");
-var componentSymbol = Symbol("FormKitComponentCallback");
-function FormKit(props, context) {
-  const node = useInput(props, context);
-  if (!node.props.definition)
-    error(600, node);
-  if (node.props.definition.component) {
-    return () => h(
-      node.props.definition?.component,
-      {
-        context: node.context
-      },
-      { ...context.slots }
-    );
-  }
-  const schema = ref([]);
-  let memoKey = node.props.definition.schemaMemoKey;
-  const generateSchema = () => {
-    const schemaDefinition = node.props?.definition?.schema;
-    if (!schemaDefinition)
-      error(601, node);
-    if (typeof schemaDefinition === "function") {
-      schema.value = schemaDefinition({ ...props.sectionsSchema || {} });
-      if (memoKey && props.sectionsSchema || "memoKey" in schemaDefinition && typeof schemaDefinition.memoKey === "string") {
-        memoKey = (memoKey ?? schemaDefinition?.memoKey) + JSON.stringify(props.sectionsSchema);
-      }
-    } else {
-      schema.value = schemaDefinition;
-    }
-  };
-  generateSchema();
-  context.emit("node", node);
-  const definitionLibrary = node.props.definition.library;
-  const library = {
-    FormKit: markRaw(formkitComponent),
-    ...definitionLibrary,
-    ...props.library ?? {}
-  };
-  function didMount() {
-    node.emit("mounted");
-  }
-  context.expose({ node });
-  return () => h(
-    FormKitSchema,
-    {
-      schema: schema.value,
-      data: node.context,
-      onMounted: didMount,
-      library,
-      memoKey
-    },
-    { ...context.slots }
-  );
-}
-var formkitComponent = /* @__PURE__ */ defineComponent(
-  FormKit,
-  {
-    props: runtimeProps,
-    inheritAttrs: false
-  }
-);
-var FormKit_default = formkitComponent;
-var rootSymbol = Symbol();
-var optionsSymbol = Symbol.for("FormKitOptions");
-var configSymbol = Symbol.for("FormKitConfig");
-var pseudoProps = [
-  // Boolean props
-  "ignore",
-  "disabled",
-  "preserve",
-  // String props
-  "help",
-  "label",
-  /^preserve(-e|E)rrors/,
-  /^[a-z]+(?:-visibility|Visibility|-behavior|Behavior)$/,
-  /^[a-zA-Z-]+(?:-class|Class)$/,
-  "prefixIcon",
-  "suffixIcon",
-  /^[a-zA-Z-]+(?:-icon|Icon)$/
-];
-var boolProps = ["disabled", "ignore", "preserve"];
-function classesToNodeProps(node, props) {
-  if (props.classes) {
-    Object.keys(props.classes).forEach(
-      (key) => {
-        if (typeof key === "string") {
-          node.props[`_${key}Class`] = props.classes[key];
-          if (isObject(props.classes[key]) && key === "inner")
-            Object.values(props.classes[key]);
-        }
-      }
-    );
-  }
-}
-function onlyListeners(props) {
-  if (!props)
-    return {};
-  const knownListeners = ["Submit", "SubmitRaw", "SubmitInvalid"].reduce(
-    (listeners, listener) => {
-      const name = `on${listener}`;
-      if (name in props) {
-        if (typeof props[name] === "function") {
-          listeners[name] = props[name];
-        }
-      }
-      return listeners;
-    },
-    {}
-  );
-  return knownListeners;
-}
-function useInput(props, context, options = {}) {
-  const config = Object.assign({}, inject(optionsSymbol) || {}, options);
-  const __root = inject(rootSymbol, ref(void 0));
-  const __cmpCallback = inject(componentSymbol, () => {
-  });
-  const instance = getCurrentInstance();
-  const listeners = onlyListeners(instance?.vnode.props);
-  const isVModeled = ["modelValue", "model-value"].some(
-    (prop) => prop in (instance?.vnode.props ?? {})
-  );
-  const value = props.modelValue !== void 0 ? props.modelValue : cloneAny(context.attrs.value);
-  function createInitialProps() {
-    const initialProps2 = {
-      ...nodeProps(props),
-      ...listeners,
-      type: props.type ?? "text",
-      __root: __root.value,
-      __slots: context.slots
-    };
-    const attrs = except(nodeProps(context.attrs), pseudoProps);
-    if (!attrs.key)
-      attrs.key = token();
-    initialProps2.attrs = attrs;
-    const propValues = only(nodeProps(context.attrs), pseudoProps);
-    for (const propName in propValues) {
-      if (boolProps.includes(propName) && propValues[propName] === "") {
-        propValues[propName] = true;
-      }
-      initialProps2[camel(propName)] = propValues[propName];
-    }
-    const classesProps = { props: {} };
-    classesToNodeProps(classesProps, props);
-    Object.assign(initialProps2, classesProps.props);
-    if (typeof initialProps2.type !== "string") {
-      initialProps2.definition = initialProps2.type;
-      delete initialProps2.type;
-    }
-    return initialProps2;
-  }
-  const initialProps = createInitialProps();
-  const parent = initialProps.ignore ? null : props.parent || inject(parentSymbol, null);
-  const node = createNode(
-    extend(
-      config || {},
-      {
-        name: props.name || void 0,
-        value,
-        parent,
-        plugins: (config.plugins || []).concat(props.plugins ?? []),
-        config: props.config || {},
-        props: initialProps,
-        index: props.index,
-        sync: !!undefine(context.attrs.sync || context.attrs.dynamic)
-      },
-      false,
-      true
-    )
-  );
-  __cmpCallback(node);
-  if (!node.props.definition)
-    error(600, node);
-  const lateBoundProps = ref(
-    new Set(
-      Array.isArray(node.props.__propDefs) ? node.props.__propDefs : Object.keys(node.props.__propDefs ?? {})
-    )
-  );
-  node.on(
-    "added-props",
-    ({ payload: lateProps }) => {
-      const propNames = Array.isArray(lateProps) ? lateProps : Object.keys(lateProps ?? {});
-      propNames.forEach((newProp) => lateBoundProps.value.add(newProp));
-    }
-  );
-  const pseudoPropNames = computed(
-    () => pseudoProps.concat([...lateBoundProps.value]).reduce((names, prop) => {
-      if (typeof prop === "string") {
-        names.push(camel(prop));
-        names.push(kebab(prop));
-      } else {
-        names.push(prop);
-      }
-      return names;
-    }, [])
-  );
-  watchEffect(() => classesToNodeProps(node, props));
-  const passThrough = nodeProps(props);
-  for (const prop in passThrough) {
-    watch(
-      () => props[prop],
-      () => {
-        if (props[prop] !== void 0) {
-          node.props[prop] = props[prop];
-        }
-      }
-    );
-  }
-  watchEffect(() => {
-    node.props.__root = __root.value;
-  });
-  const attributeWatchers = /* @__PURE__ */ new Set();
-  const possibleProps = nodeProps(context.attrs);
-  watchEffect(() => {
-    watchAttributes(only(possibleProps, pseudoPropNames.value));
-  });
-  function watchAttributes(attrProps) {
-    attributeWatchers.forEach((stop) => {
-      stop();
-      attributeWatchers.delete(stop);
-    });
-    for (const prop in attrProps) {
-      const camelName = camel(prop);
-      attributeWatchers.add(
-        watch(
-          () => context.attrs[prop],
-          () => {
-            node.props[camelName] = context.attrs[prop];
-          }
-        )
-      );
-    }
-  }
-  watchEffect(() => {
-    const attrs = except(nodeProps(context.attrs), pseudoPropNames.value);
-    if ("multiple" in attrs)
-      attrs.multiple = undefine(attrs.multiple);
-    if (typeof attrs.onBlur === "function") {
-      attrs.onBlur = oncePerTick(attrs.onBlur);
-    }
-    node.props.attrs = Object.assign({}, node.props.attrs || {}, attrs);
-  });
-  watchEffect(() => {
-    const messages3 = (props.errors ?? []).map(
-      (error3) => /* @__PURE__ */ createMessage({
-        key: slugify(error3),
-        type: "error",
-        value: error3,
-        meta: { source: "prop" }
-      })
-    );
-    node.store.apply(
-      messages3,
-      (message3) => message3.type === "error" && message3.meta.source === "prop"
-    );
-  });
-  if (node.type !== "input") {
-    const sourceKey = `${node.name}-prop`;
-    watchEffect(() => {
-      const inputErrors = props.inputErrors ?? {};
-      const keys = Object.keys(inputErrors);
-      if (!keys.length)
-        node.clearErrors(true, sourceKey);
-      const messages3 = keys.reduce((messages4, key) => {
-        let value2 = inputErrors[key];
-        if (typeof value2 === "string")
-          value2 = [value2];
-        if (Array.isArray(value2)) {
-          messages4[key] = value2.map(
-            (error3) => /* @__PURE__ */ createMessage({
-              key: error3,
-              type: "error",
-              value: error3,
-              meta: { source: sourceKey }
-            })
-          );
-        }
-        return messages4;
-      }, {});
-      node.store.apply(
-        messages3,
-        (message3) => message3.type === "error" && message3.meta.source === sourceKey
-      );
-    });
-  }
-  watchEffect(() => Object.assign(node.config, props.config));
-  if (node.type !== "input") {
-    provide(parentSymbol, node);
-  }
-  let clonedValueBeforeVmodel = void 0;
-  node.on("modelUpdated", () => {
-    context.emit("inputRaw", node.context?.value, node);
-    if (isVModeled && node.context) {
-      clonedValueBeforeVmodel = cloneAny(node.value);
-      context.emit("update:modelValue", shallowClone(node.value));
-    }
-  });
-  if (isVModeled) {
-    watch(
-      toRef(props, "modelValue"),
-      (value2) => {
-        if (!eq(clonedValueBeforeVmodel, value2)) {
-          node.input(value2, false);
-        }
-      },
-      { deep: true }
-    );
-    if (node.value !== value) {
-      node.emit("modelUpdated");
-    }
-  }
-  return node;
-}
 var messages = createSection("messages", () => ({
   $el: "ul",
   if: "$fns.length($messages)"
@@ -1942,89 +1178,6 @@ var message = createSection("message", () => ({
   }
 }));
 messages(message("$message.value"));
-function useConfig(config) {
-  const options = Object.assign(
-    {
-      alias: "FormKit",
-      schemaAlias: "FormKitSchema"
-    },
-    typeof config === "function" ? config() : config
-  );
-  const rootConfig = createConfig(options.config || {});
-  options.config = { rootConfig };
-  provide(optionsSymbol, options);
-  provide(configSymbol, rootConfig);
-}
-var FormKitProvider = /* @__PURE__ */ defineComponent(
-  function FormKitProvider2(props, { slots, attrs }) {
-    const options = {};
-    if (props.config) {
-      useConfig(props.config);
-    }
-    return () => slots.default ? slots.default(options).map((vnode) => {
-      return h(vnode, {
-        ...attrs,
-        ...vnode.props
-      });
-    }) : null;
-  },
-  { props: ["config"], name: "FormKitProvider", inheritAttrs: false }
-);
-var FormKitConfigLoader = /* @__PURE__ */ defineComponent(
-  async function FormKitConfigLoader2(props, context) {
-    let config = {};
-    if (props.configFile) {
-      const configFile = await import(
-        /*@__formkit.config.ts__*/
-        /* @vite-ignore */
-        /* webpackIgnore: true */
-        props.configFile
-      );
-      config = "default" in configFile ? configFile.default : configFile;
-    }
-    if (typeof config === "function") {
-      config = config();
-    }
-    const useDefaultConfig = props.defaultConfig ?? true;
-    if (useDefaultConfig) {
-      const { defaultConfig: defaultConfig2 } = await Promise.resolve().then(() => (init_defaultConfig(), defaultConfig_exports));
-      config = /* @__PURE__ */ defaultConfig2(config);
-    }
-    return () => h(FormKitProvider, { ...context.attrs, config }, context.slots);
-  },
-  {
-    props: ["defaultConfig", "configFile"],
-    inheritAttrs: false
-  }
-);
-var FormKitLazyProvider = /* @__PURE__ */ defineComponent(
-  function FormKitLazyProvider2(props, context) {
-    const config = inject(optionsSymbol, null);
-    const passthru = (vnode) => {
-      return h(vnode, {
-        ...context.attrs,
-        ...vnode.props
-      });
-    };
-    if (config) {
-      return () => context.slots?.default ? context.slots.default().map(passthru) : null;
-    }
-    const instance = getCurrentInstance();
-    if (instance.suspense) {
-      return () => h(FormKitConfigLoader, props, {
-        default: () => context.slots?.default ? context.slots.default().map(passthru) : null
-      });
-    }
-    return () => h(Suspense, null, {
-      ...context.slots,
-      default: () => h(FormKitConfigLoader, { ...context.attrs, ...props }, context.slots)
-    });
-  },
-  {
-    props: ["defaultConfig", "configFile"],
-    inheritAttrs: false
-  }
-);
 var summary = createSection("summary", () => ({
   $el: "div",
   attrs: {
@@ -2219,8 +1372,8 @@ const _sfc_main$1 = {
     const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-2f4tTRti.mjs'));
-    const _Error = defineAsyncComponent(() => import('./error-500-Cd-PnREZ.mjs'));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-D6iuH-Jt.mjs'));
+    const _Error = defineAsyncComponent(() => import('./error-500-nwF6aAln.mjs'));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ statusCode: unref(statusCode), statusMessage: unref(statusMessage), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
@@ -2244,8 +1397,8 @@ const _sfc_main = {
     const SingleRenderer = false;
     provide(PageRouteSymbol, useRoute());
     nuxtApp.hooks.callHookWith((hooks) => hooks.map((hook) => hook()), "vue:setup");
-    const error2 = /* @__PURE__ */ useError();
-    const abortRender = error2.value && !nuxtApp.ssrContext.error;
+    const error = /* @__PURE__ */ useError();
+    const abortRender = error.value && !nuxtApp.ssrContext.error;
     onErrorCaptured((err, target, info) => {
       nuxtApp.hooks.callHook("vue:error", err, target, info).catch((hookError) => console.error("[nuxt] Error in `vue:error` hook", hookError));
       {
@@ -2260,8 +1413,8 @@ const _sfc_main = {
         default: () => {
           if (unref(abortRender)) {
             _push(`<div></div>`);
-          } else if (unref(error2)) {
-            _push(ssrRenderComponent(unref(_sfc_main$1), { error: unref(error2) }, null, _parent));
+          } else if (unref(error)) {
+            _push(ssrRenderComponent(unref(_sfc_main$1), { error: unref(error) }, null, _parent));
           } else if (unref(islandContext)) {
             _push(ssrRenderComponent(unref(IslandRenderer), { context: unref(islandContext) }, null, _parent));
           } else if (unref(SingleRenderer)) {
@@ -2289,9 +1442,9 @@ let entry;
     try {
       await applyPlugins(nuxt, plugins);
       await nuxt.hooks.callHook("app:created", vueApp);
-    } catch (error2) {
-      await nuxt.hooks.callHook("app:error", error2);
-      nuxt.payload.error ||= createError(error2);
+    } catch (error) {
+      await nuxt.hooks.callHook("app:error", error);
+      nuxt.payload.error ||= createError(error);
     }
     if (ssrContext?._renderResponse) {
       throw new Error("skipping render");
@@ -2301,5 +1454,5 @@ let entry;
 }
 const entry_default = (ssrContext) => entry(ssrContext);
 
-export { FormKitLazyProvider as F, _export_sfc as _, useNuxtApp as a, useRuntimeConfig as b, nuxtLinkDefaults as c, FormKit_default as d, entry_default as default, navigateTo as n, resolveRouteObject as r, useRouter as u };
+export { _export_sfc as _, useNuxtApp as a, useRuntimeConfig as b, nuxtLinkDefaults as c, entry_default as default, navigateTo as n, resolveRouteObject as r, useRouter as u };
 //# sourceMappingURL=server.mjs.map

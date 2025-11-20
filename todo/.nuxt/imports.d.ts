@@ -32,4 +32,3 @@ export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composab
 export { defineLazyHydrationComponent } from '#app/composables/lazy-hydration';
 export { FormKitNode, getNode, setErrors, clearErrors, submitForm, reset } from '@formkit/core';
 export { createInput, useFormKitContext, useFormKitContextById, useFormKitNodeById } from '@formkit/vue';
-export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';

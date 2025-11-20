@@ -95,7 +95,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/dev.json"
+        "./manifest/meta/bcfc688a-0e09-4df8-abca-fd2668e0a99a"
       ],
       "#components": [
         "./components"
@@ -161,6 +161,7 @@
   ],
   "exclude": [
     "../node_modules",
+    "../../node_modules",
     "../node_modules/nuxt/node_modules",
     "../node_modules/@formkit/nuxt/node_modules",
     "../node_modules/@nuxt/devtools/node_modules",
